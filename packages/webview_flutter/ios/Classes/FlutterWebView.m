@@ -91,6 +91,9 @@
     [self updateAutoMediaPlaybackPolicy:args[@"autoMediaPlaybackPolicy"]
                         inConfiguration:configuration];
 
+    // temporarily solve "native fullscreen video" | https://github.com/flutter/flutter/issues/25630
+    configuration.allowsInlineMediaPlayback = true;
+
     _webView = [[FLTWKWebView alloc] initWithFrame:frame configuration:configuration];
     _navigationDelegate = [[FLTWKNavigationDelegate alloc] initWithChannel:_channel];
     _webView.UIDelegate = self;
